@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5" /* 指定 ECMAScript 目标版本: 'ES3' (默认), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', 'ES2021', 'ESNEXT'。 */,
+    "module": "commonjs" /* 指定模块代码生成: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNEXT'。 */,
+    "strict": true /* 启用所有严格的类型检查选项。 */,
+    "forceConsistentCasingInFileNames": true /* 确保对大小写敏感的文件名解析。 */,
+    "isolatedModules": true /* 将每个文件作为单独的模块进行编译（与 `ts.transpileModule` 类似）。 */,
+    "lib": ["es6", "DOM", "ESNext"] /* 指定要包含在编译中的库文件列表。 */,
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./dist" /* 指定输出目录。 */,
+    "rootDir": "./src",
+    "esModuleInterop": true
+  },
+  "include": ["src"] /* 指定要包含在编译中的文件或目录。 */,
+  "exclude": ["node_modules"] /* 指定要排除在编译之外的文件或目录。 */
+}

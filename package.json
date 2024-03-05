@@ -1,0 +1,27 @@
+{
+  "name": "react-custom-hook-karlfranz",
+  "version": "1.0.6",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "build": "npx tsc -p .",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "hook"
+  ],
+  "author": "karlfranz",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.11.22",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.202",
+    "@types/react": "^18.2.60"
+  }
+}
