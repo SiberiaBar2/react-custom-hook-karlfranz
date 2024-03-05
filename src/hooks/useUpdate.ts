@@ -36,7 +36,7 @@ export const useUpdate = (
     callback();
 
     return () => {
-      count.current = Nums.zero;
+      // count.current = Nums.zero;
       unMount instanceof Function && unMount();
     };
   }, [...deps]);
