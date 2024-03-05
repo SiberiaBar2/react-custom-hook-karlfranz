@@ -5,4 +5,4 @@ export * from "./useStorgeState";
 export * from "./useSyncCallback";
 export * from "./useMount";
 export * from "./useInterVal";
-export * from "./useBoolean";
+export * from "./useUpdate";

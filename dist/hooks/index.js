@@ -21,5 +21,5 @@ __exportStar(require("./useStorgeState"), exports);
 __exportStar(require("./useSyncCallback"), exports);
 __exportStar(require("./useMount"), exports);
 __exportStar(require("./useInterVal"), exports);
-__exportStar(require("./useBoolean"), exports);
+__exportStar(require("./useUpdate"), exports);
 //# sourceMappingURL=index.js.map
