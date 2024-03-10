@@ -1,6 +1,6 @@
 {
   "name": "react-custom-hook-karlfranz",
-  "version": "1.2.4",
+  "version": "2.0.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
