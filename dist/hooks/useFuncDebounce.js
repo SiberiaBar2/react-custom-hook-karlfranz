@@ -19,9 +19,26 @@ var useFuncDebounce = function () {
     var timerRef = (0, react_1.useRef)(undefined);
     /**
      *
+     * 提供一个防抖函数
+     *
      * @param callback 被防抖的函数
+     *
      * @param delay 函数延迟执行时间
+     *
      * @param change 选择是否改变this指向
+     *
+     * @returns Function
+     */
+    /**
+     *
+     * Provide an anti-shake function
+     *
+     * @param callback function to be stabilized
+     *
+     * @param delay function delay execution time
+     *
+     * @param change Choose whether to change this pointer
+     *
      * @returns Function
      */
     function debouncedCallback(callback, delay, change) {
@@ -37,7 +54,7 @@ var useFuncDebounce = function () {
             if (object === null || object === void 0 ? void 0 : object.stopPropagation) {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                object.stopPropagation();
+                object === null || object === void 0 ? void 0 : object.stopPropagation();
             }
             if (timerRef.current)
                 clearTimeout(timerRef.current);

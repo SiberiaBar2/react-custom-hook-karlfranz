@@ -3,9 +3,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.useStorgeState = void 0;
 var react_1 = require("react");
 /**
+ * react useState 结合 sessionStorage，在改变状态时会存储状态到sessionStorage
  *
  * @param value 初始值 | 计算初始值的函数
+ *
  * @param storgeKey stroage 存储的键
+ *
+ * @returns [state, setState]
+ */
+/**
+ * react useState combined with sessionStorage will store the state to sessionStorage when changing the state.
+ *
+ * @param value initial value | function to calculate initial value
+ *
+ * @param storageKey stroage stored key
+ *
  * @returns [state, setState]
  */
 function useStorgeState(value, storgeKey) {

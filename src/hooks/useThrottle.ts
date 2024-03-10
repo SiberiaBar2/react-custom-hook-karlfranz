@@ -1,10 +1,14 @@
 import { useEffect, useRef } from "react";
 
 /**
- * 
+ *
  * 提供一个节流函数
  */
 
+/**
+ *
+ * Provide a throttling function
+ */
 export const useThrottle = () => {
   const valid = useRef(false);
   const timer = useRef<NodeJS.Timeout | undefined>(undefined);

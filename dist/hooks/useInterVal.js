@@ -1,14 +1,20 @@
 "use strict";
-// auth danny
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useInterVal = void 0;
+// auth danny
+var react_1 = require("react");
 /**
- * react hook 和定时器的结合使用， 可用于下面的 useCountDown hook
+ * react hook 和定时器的结合使用,
  *
  * 这是一个可以控制速度、暂停的hook
  *
  */
-var react_1 = require("react");
+/**
+ * Combined use of react hook and timer,
+ *
+ * This is a hook that can control speed and pause
+ *
+ */
 var useInterVal = function (callback, delaty) {
     var savedCallback = (0, react_1.useRef)();
     (0, react_1.useEffect)(function () {
