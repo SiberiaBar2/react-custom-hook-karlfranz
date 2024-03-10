@@ -1,14 +1,19 @@
 // auth danny
+import React, { useRef, useEffect, MutableRefObject } from "react";
 
 /**
- * react hook 和定时器的结合使用， 可用于下面的 useCountDown hook
+ * react hook 和定时器的结合使用,
  *
  * 这是一个可以控制速度、暂停的hook
  *
  */
 
-import React, { useRef, useEffect, MutableRefObject } from "react";
-
+/**
+ * Combined use of react hook and timer,
+ *
+ * This is a hook that can control speed and pause
+ *
+ */
 export const useInterVal = (callback: () => void, delaty: number | null) => {
   const savedCallback: MutableRefObject<any> = useRef();
 

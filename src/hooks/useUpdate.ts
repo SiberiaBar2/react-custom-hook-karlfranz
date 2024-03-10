@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { NUMS } from "./types";
 
 /**
  * 有时我们并不希望在react初次渲染时就执行某些函数，
@@ -7,17 +8,26 @@ import { useEffect, useRef } from "react";
  *
  * @callback 执行的回调函数
  *
- * @deps 依赖项
+ * @deps 依赖项 dependent
  *
- * @updatedCount 从第几次重渲之后开始执行回调函数 默认为第一次重渲之后
+ * @updatedCount 指定在多少次重薪渲染之后才会调用回调函数，默认为第一次重新渲染之后调用
  *
- * @unMount 卸载的函数
+ * @unMount 卸载的函数 unMount
  */
 
-enum Nums {
-  zero,
-  one,
-}
+/**
+ * Sometimes we don’t want to execute certain functions when react is first rendered.
+ *
+ * Instead, we hope to execute it in subsequent component re-rendering
+ *
+ * @callback callback function executed
+ *
+ * @deps dependencies dependent
+ *
+ * @updatedCount specifies the number of re-renders before the callback function will be called. The default is to call it after the first re-render.
+ *
+ * @unMount Uninstall function unMount
+ */
 
 export const useUpdate = (
   callback: () => void,
@@ -25,12 +35,12 @@ export const useUpdate = (
   endCount?: number,
   unMount?: () => void
 ) => {
-  const count = useRef(Nums.zero);
+  const count = useRef(NUMS.ZERO);
 
   useEffect(() => {
-    count.current += Nums.one;
+    count.current += NUMS.ONE;
 
-    if (count.current === (endCount || Nums.one)) {
+    if (count.current === (endCount || NUMS.ONE)) {
       return;
     }
     callback();

@@ -5,9 +5,27 @@ export const useFuncDebounce = function () {
   const timerRef = useRef<NodeJS.Timeout | undefined>(undefined);
   /**
    *
+   * 提供一个防抖函数
+   *
    * @param callback 被防抖的函数
+   *
    * @param delay 函数延迟执行时间
+   *
    * @param change 选择是否改变this指向
+   *
+   * @returns Function
+   */
+
+  /**
+   *
+   * Provide an anti-shake function
+   *
+   * @param callback function to be stabilized
+   *
+   * @param delay function delay execution time
+   *
+   * @param change Choose whether to change this pointer
+   *
    * @returns Function
    */
   function debouncedCallback<
@@ -22,7 +40,7 @@ export const useFuncDebounce = function () {
       if (object?.stopPropagation) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        object.stopPropagation();
+        object?.stopPropagation();
       }
       if (timerRef.current) clearTimeout(timerRef.current);
       timerRef.current = setTimeout(function () {
