@@ -28,7 +28,6 @@ import { NUMS } from "./types";
  *
  * @unMount Uninstall function unMount
  */
-
 export const useUpdate = (
   callback: () => void,
   deps: unknown[],
