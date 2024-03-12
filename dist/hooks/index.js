@@ -21,6 +21,6 @@ __exportStar(require("./useStorgeState"), exports);
 __exportStar(require("./useSyncCallback"), exports);
 __exportStar(require("./useMount"), exports);
 __exportStar(require("./useInterVal"), exports);
-__exportStar(require("./useUpdate"), exports);
+__exportStar(require("./useKeyUpdate"), exports);
 __exportStar(require("./useThrottle"), exports);
 //# sourceMappingURL=index.js.map
