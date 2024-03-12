@@ -30,7 +30,7 @@ type ReturnArray<K> = [K, DispatchFunc<K>];
   *
   * exmplate
   *
-  * const [count, setCount] = useStateStrong<number>(1);
+  * const [count, setCount] = useStateSync<number>(1);
   *
    const handelClick = () => {
    // where newValue is the latest value

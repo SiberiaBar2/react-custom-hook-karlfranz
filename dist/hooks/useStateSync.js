@@ -32,7 +32,7 @@ var types_1 = require("./types");
   *
   * exmplate
   *
-  * const [count, setCount] = useStateStrong<number>(1);
+  * const [count, setCount] = useStateSync<number>(1);
   *
    const handelClick = () => {
    // where newValue is the latest value
