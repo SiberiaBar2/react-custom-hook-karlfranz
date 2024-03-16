@@ -23,4 +23,5 @@ __exportStar(require("./useMount"), exports);
 __exportStar(require("./useInterVal"), exports);
 __exportStar(require("./useKeyUpdate"), exports);
 __exportStar(require("./useThrottle"), exports);
+__exportStar(require("./useMountRef"), exports);
 //# sourceMappingURL=index.js.map
