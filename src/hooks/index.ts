@@ -7,3 +7,4 @@ export * from "./useMount";
 export * from "./useInterVal";
 export * from "./useKeyUpdate";
 export * from "./useThrottle";
+export * from "./useMountRef";
