@@ -20,6 +20,8 @@ interface OptionsConfig {
   retryNum?: number;
   manual?: boolean;
   responsePath?: string;
+  codePath?: string | number;
+  responseCode?: string | number;
 }
 
 interface EndConfig {
@@ -58,6 +60,9 @@ type P = [
  *
  * responsePath?: string 返回数据路径;
  *
+ * codePath?: string | number 设置响应结果的code状态路径 (默认为code);
+ * 
+ * responseCode?: string | number 响应结果code的值 (默认为200)
  */
 /**
  * Data request hook, similar to ahooks useRequest
@@ -86,6 +91,10 @@ type P = [
  *
  * responsePath?: string returns data path;
  *
+ * CodePath?: String | number; sets the code status path for the response result (default to code);
+ *
+ * ResponseCode?: string | number; response result code (default to 200);
+ * 
  */
 export const useRequest = <T extends object>(
   ...[syncFunc, options, end]: P
@@ -101,6 +110,8 @@ export const useRequest = <T extends object>(
     throttleWait = 0,
     loadingDelay = 0,
     responsePath = "",
+    codePath = CODEPATH,
+    responseCode = RESPONSRCODE,
     refreshOnWindowFocus = false,
   } = options || {};
   const throttleCallback = useThrottle();
@@ -173,7 +184,7 @@ export const useRequest = <T extends object>(
             .then((res) => {
               console.log("res=====>", res);
 
-              if (_.get(res, CODEPATH) === RESPONSRCODE) {
+              if (_.get(res, codePath) === responseCode) {
                 console.log("壮年出征");
                 saveData(res);
                 end?.success && end.success(res);

@@ -25,4 +25,5 @@ __exportStar(require("./useKeyUpdate"), exports);
 __exportStar(require("./useThrottle"), exports);
 __exportStar(require("./useMountRef"), exports);
 __exportStar(require("./useDocumentTitle"), exports);
+__exportStar(require("./useRequest"), exports);
 //# sourceMappingURL=index.js.map
