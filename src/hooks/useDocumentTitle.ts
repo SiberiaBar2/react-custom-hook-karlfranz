@@ -1,15 +1,21 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 /**
- * 
+ *
  * change title
+ *
+ * @param title
+ *
+ * @param keepOnUnmount
  * 
- * @param title 
- * 
- * @param keepOnUnmount 
+ * @returns () => void; a function to change title
  */
 export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
   const oldTitle = useRef(document.title).current;
+
+  const changeTitle = useCallback(() => {
+    document.title = title;
+  }, []);
 
   useEffect(() => {
     document.title = title;
@@ -22,4 +28,6 @@ export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
       }
     };
   }, [keepOnUnmount, oldTitle]);
+
+  return changeTitle;
 };
