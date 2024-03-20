@@ -9,3 +9,4 @@ export * from "./useKeyUpdate";
 export * from "./useThrottle";
 export * from "./useMountRef";
 export * from "./useDocumentTitle";
+export * from "./useRequest";
