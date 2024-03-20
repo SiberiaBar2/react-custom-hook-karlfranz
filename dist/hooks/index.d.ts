@@ -8,3 +8,4 @@ export * from "./useInterVal";
 export * from "./useKeyUpdate";
 export * from "./useThrottle";
 export * from "./useMountRef";
+export * from "./useDocumentTitle";
