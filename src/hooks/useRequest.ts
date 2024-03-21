@@ -22,6 +22,7 @@ interface OptionsConfig {
   responsePath?: string;
   codePath?: string | number;
   responseCode?: string | number;
+  enableConsoleAuxiliary?: boolean;
 }
 
 interface EndConfig {
@@ -61,8 +62,11 @@ type P = [
  * responsePath?: string 返回数据路径;
  *
  * codePath?: string | number 设置响应结果的code状态路径 (默认为code);
- * 
+ *
  * responseCode?: string | number 响应结果code的值 (默认为200)
+ * 
+ * enableConsoleAuxiliary? boolean 是否开启辅助打印
+ * 
  */
 /**
  * Data request hook, similar to ahooks useRequest
@@ -94,6 +98,8 @@ type P = [
  * CodePath?: String | number; sets the code status path for the response result (default to code);
  *
  * ResponseCode?: string | number; response result code (default to 200);
+ *
+ * enableConsoleAuxiliary?: boolean; Is auxiliary printing enabled
  * 
  */
 export const useRequest = <T extends object>(
@@ -111,6 +117,7 @@ export const useRequest = <T extends object>(
     loadingDelay = 0,
     responsePath = "",
     codePath = CODEPATH,
+    enableConsoleAuxiliary = false,
     responseCode = RESPONSRCODE,
     refreshOnWindowFocus = false,
   } = options || {};
@@ -140,7 +147,7 @@ export const useRequest = <T extends object>(
     getSyncDataWrap(config);
   };
 
-  console.log("render count");
+  enableConsoleAuxiliary && console.log("render count");
 
   const saveData = (res: any) => {
     if (responsePath) {
@@ -160,7 +167,7 @@ export const useRequest = <T extends object>(
   };
 
   const getSyncData = (config?: unknown) => {
-    console.warn("useRequest getSyncData config", config);
+    enableConsoleAuxiliary && console.warn("useRequest getSyncData config", config);
     try {
       loadingOn();
       if (ready) {
@@ -169,7 +176,6 @@ export const useRequest = <T extends object>(
             localStorage.getItem(cacheKey) || "{}"
           );
           if (!_.isEmpty(locationCacheData)) {
-            console.log("少时诵诗书");
             saveData(locationCacheData);
             end?.success && end.success(locationCacheData);
             loadingOff();
@@ -182,10 +188,7 @@ export const useRequest = <T extends object>(
 
           syncFunc(params)
             .then((res) => {
-              console.log("res=====>", res);
-
               if (_.get(res, codePath) === responseCode) {
-                console.log("壮年出征");
                 saveData(res);
                 end?.success && end.success(res);
                 cacheKey && localStorage.setItem(cacheKey, JSON.stringify(res));
@@ -236,8 +239,6 @@ export const useRequest = <T extends object>(
       return;
     }
     if (loadingDelay) {
-      console.log("loadingDelay");
-
       loadingDelatyTimer.current = setTimeout(() => {
         getSyncDataWrap(requestConfig.current);
       }, loadingDelay);
@@ -257,7 +258,6 @@ export const useRequest = <T extends object>(
    * loop
    */
   useInterVal(() => {
-    console.warn("useRequest loop is start!", loop);
     getSyncDataWrap(requestConfig.current);
   }, loop);
 

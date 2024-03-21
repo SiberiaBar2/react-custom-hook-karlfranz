@@ -49,7 +49,7 @@ export const useKeyUpdate = (
   useEffect(() => {
     count.current += NUMS.ONE;
 
-    if (count.current !== (endCount || NUMS.ONE)) {
+    if (count.current > (endCount || NUMS.ONE)) {
       callback();
     }
 
