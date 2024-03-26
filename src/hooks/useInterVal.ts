@@ -1,6 +1,8 @@
 // auth danny
 import React, { useRef, useEffect, MutableRefObject } from "react";
 
+type F = () => void;
+
 /**
  * react hook 和定时器的结合使用,
  *
@@ -13,11 +15,11 @@ import React, { useRef, useEffect, MutableRefObject } from "react";
  * Combined use of react hook and timer,
  *
  * This is a hook that can control speed and pause
- * 
+ *
  * param delaty can be a variable
  */
-export const useInterVal = (callback: () => void, delaty: number | null) => {
-  const savedCallback: MutableRefObject<any> = useRef();
+export const useInterVal = (callback: F, delaty: number | null) => {
+  const savedCallback = useRef<F>(callback);
 
   useEffect(() => {
     savedCallback.current = callback;

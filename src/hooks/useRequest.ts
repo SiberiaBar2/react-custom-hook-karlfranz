@@ -9,7 +9,7 @@ const CODEPATH = "code";
 const FAILEDMESSAGE = "获取数据失败";
 
 interface OptionsConfig {
-  loop?: number;
+  loop?: number | number;
   debounceWait?: number;
   throttleWait?: number;
   cacheKey?: string;
@@ -27,7 +27,7 @@ interface OptionsConfig {
 
 interface EndConfig {
   success?: (res: any) => void;
-  error?: (error: Error) => void;
+  error?: (error: Error | any) => void;
 }
 
 type P = [
@@ -64,9 +64,9 @@ type P = [
  * codePath?: string | number 设置响应结果的code状态路径 (默认为code);
  *
  * responseCode?: string | number 响应结果code的值 (默认为200)
- * 
+ *
  * enableConsoleAuxiliary? boolean 是否开启辅助打印
- * 
+ *
  */
 /**
  * Data request hook, similar to ahooks useRequest
@@ -100,7 +100,7 @@ type P = [
  * ResponseCode?: string | number; response result code (default to 200);
  *
  * enableConsoleAuxiliary?: boolean; Is auxiliary printing enabled
- * 
+ *
  */
 export const useRequest = <T extends object>(
   ...[syncFunc, options, end]: P
@@ -117,9 +117,9 @@ export const useRequest = <T extends object>(
     loadingDelay = 0,
     responsePath = "",
     codePath = CODEPATH,
-    enableConsoleAuxiliary = false,
     responseCode = RESPONSRCODE,
     refreshOnWindowFocus = false,
+    enableConsoleAuxiliary = false,
   } = options || {};
   const throttleCallback = useThrottle();
   const debouncedCallback = useFuncDebounce();
@@ -167,7 +167,8 @@ export const useRequest = <T extends object>(
   };
 
   const getSyncData = (config?: unknown) => {
-    enableConsoleAuxiliary && console.warn("useRequest getSyncData config", config);
+    enableConsoleAuxiliary &&
+      console.warn("useRequest getSyncData config", config);
     try {
       loadingOn();
       if (ready) {
@@ -196,12 +197,13 @@ export const useRequest = <T extends object>(
               } else {
                 console.error(FAILEDMESSAGE);
                 loadingOff();
+                end?.error && end.error(res);
                 Promise.reject(new Error(FAILEDMESSAGE));
               }
             })
             .catch((error) => {
               loadingOff();
-              end?.error && end.error(error);
+              // end?.error && end.error(error);
               console.log("useRequest error catch!", error);
 
               if (retryNum) {
@@ -257,9 +259,12 @@ export const useRequest = <T extends object>(
   /**
    * loop
    */
+  const getDelatyVal = () => {
+    return loop || loop === 0 ? loop : null;
+  };
   useInterVal(() => {
     getSyncDataWrap(requestConfig.current);
-  }, loop);
+  }, getDelatyVal());
 
   /**
    * refreshOnWindowFocus
