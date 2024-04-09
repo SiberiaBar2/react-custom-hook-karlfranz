@@ -1,5 +1,5 @@
 {
-  "name": "reacthooks",
+  "name": "@karlfranz/reacthooks",
   "version": "2.0.13",
   "description": "",
   "main": "dist/index.js",
