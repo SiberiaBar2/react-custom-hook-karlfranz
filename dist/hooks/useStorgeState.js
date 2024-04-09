@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useStorgeState = void 0;
+exports.useSessonState = void 0;
 var react_1 = require("react");
 /**
  * react useState 结合 sessionStorage，在改变状态时会存储状态到sessionStorage
@@ -20,7 +20,7 @@ var react_1 = require("react");
  *
  * @returns [state, setState]
  */
-function useStorgeState(value, storgeKey) {
+function useSessonState(value, storgeKey) {
     var key = storgeKey || location.pathname;
     var toStringify = function (val) { return JSON.stringify(val); };
     var toParse = function (val) { return val && JSON.parse(val); };
@@ -44,5 +44,5 @@ function useStorgeState(value, storgeKey) {
     }, [key]);
     return [state, changeState];
 }
-exports.useStorgeState = useStorgeState;
+exports.useSessonState = useSessonState;
 //# sourceMappingURL=useStorgeState.js.map

@@ -26,4 +26,5 @@ __exportStar(require("./useThrottle"), exports);
 __exportStar(require("./useMountRef"), exports);
 __exportStar(require("./useDocumentTitle"), exports);
 __exportStar(require("./useRequest"), exports);
+__exportStar(require("./useLocalState"), exports);
 //# sourceMappingURL=index.js.map

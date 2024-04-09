@@ -16,4 +16,4 @@
  *
  * @returns [state, setState]
  */
-export declare function useStorgeState<T>(value: T | (() => T), storgeKey?: string): readonly [T, (state: T | ((prev?: T) => T)) => void];
+export declare function useSessonState<T>(value: T | (() => T), storgeKey?: string): readonly [T, (state: T | ((prev?: T) => T)) => void];
