@@ -1,5 +1,5 @@
 // auth danny
-import React, { useRef, useEffect, MutableRefObject } from "react";
+import { useRef, useEffect } from "react";
 
 type F = () => void;
 

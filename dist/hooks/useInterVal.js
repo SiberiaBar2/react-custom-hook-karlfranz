@@ -18,7 +18,7 @@ var react_1 = require("react");
  * param delaty can be a variable
  */
 var useInterVal = function (callback, delaty) {
-    var savedCallback = (0, react_1.useRef)();
+    var savedCallback = (0, react_1.useRef)(callback);
     (0, react_1.useEffect)(function () {
         savedCallback.current = callback;
     });

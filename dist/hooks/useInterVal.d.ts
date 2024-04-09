@@ -1,3 +1,4 @@
+type F = () => void;
 /**
  * react hook 和定时器的结合使用,
  *
@@ -12,4 +13,5 @@
  *
  * param delaty can be a variable
  */
-export declare const useInterVal: (callback: () => void, delaty: number | null) => void;
+export declare const useInterVal: (callback: F, delaty: number | null) => void;
+export {};
