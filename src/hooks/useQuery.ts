@@ -37,7 +37,6 @@ type P = [
 ];
 
 /**
- * https://ahooks.js.org/zh-CN/hooks/use-request/index
  *
  * loop?: number 轮询间隔;
  *
@@ -71,8 +70,6 @@ type P = [
 /**
  * Data request hook, similar to ahooks useRequest
  *
- * https://ahooks.js.org/zh-CN/hooks/use-request/index
- *
  * loop?: polling interval;
  *
  * debounceWait?: debounce time. If throttling is also set, only trigger debounce;
@@ -102,7 +99,7 @@ type P = [
  * enableConsoleAuxiliary?: boolean; Is auxiliary printing enabled
  *
  */
-export const useRequest = <T extends object>(
+export const useQuery = <T extends object>(
   ...[syncFunc, options, end]: P
 ) => {
   const {
@@ -123,7 +120,7 @@ export const useRequest = <T extends object>(
   } = options || {};
   const throttleCallback = useThrottle();
   const debouncedCallback = useFuncDebounce();
-  const [loading, { on: loadingOn, off: loadingOff }] = useBoolean();
+  const { value: loading, on: loadingOn, off: loadingOff } = useBoolean();
 
   //   const data = useRef<T>({} as T);
   const [data, setData] = useState<T>({} as T);

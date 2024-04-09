@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 /**
  * @value useState维护的布尔值状态
  *
@@ -9,7 +8,6 @@ import { useState } from "react";
  *
  * @toggle 对状态取反的函数
  */
-
 /**
  * Boolean value state maintained by @value useState
  *
@@ -34,5 +32,5 @@ export const useBoolean = (initValue: boolean = false) => {
     });
   };
 
-  return [value, { toggle, on, off }] as const;
+  return { value, toggle, on, off } as const;
 };

@@ -8,7 +8,7 @@ export const useRefState = <T = any>(initialValue: T) => {
   const ready = useRef<Ready>({
     value: false,
   });
-  const [_, { toggle }] = useBoolean(false);
+  const { toggle } = useBoolean(false);
 
   const handler = {
     get(target: Ready, key: string) {
