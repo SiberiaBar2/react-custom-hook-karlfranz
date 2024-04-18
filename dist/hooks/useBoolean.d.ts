@@ -16,8 +16,9 @@
  *
  * @toggle function to invert the state
  */
-export declare const useBoolean: (initValue?: boolean) => readonly [boolean, {
+export declare const useBoolean: (initValue?: boolean) => {
+    readonly value: boolean;
     readonly toggle: () => void;
     readonly on: () => void;
     readonly off: () => void;
-}];
+};

@@ -32,5 +32,5 @@ export const useBoolean = (initValue: boolean = false) => {
     });
   };
 
-  return { value, toggle, on, off } as const;
+  return { value, on, off, toggle } as const;
 };

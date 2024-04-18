@@ -18,7 +18,7 @@ type F = () => void;
  *
  * param delaty can be a variable
  */
-export const useInterVal = (callback: F, delaty: number | null) => {
+export const useInterVal = (callback: F, delaty?: number | null) => {
   const savedCallback = useRef<F>(callback);
 
   useEffect(() => {

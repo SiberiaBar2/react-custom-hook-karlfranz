@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { generateUniqueString } from "../utils";
 
 /**
  * react useState combined with localStorage will store the state to localStorage when changing the state.
@@ -10,7 +11,7 @@ import { useCallback, useState } from "react";
  * @returns [state, setState]
  */
 export function useLocalState<T>(value: T | (() => T), storgeKey?: string) {
-  const key = storgeKey || location.pathname;
+  const key = storgeKey || generateUniqueString();
 
   const toStringify = (val: T) => JSON.stringify(val);
   const toParse = (val: string | null) => val && JSON.parse(val);

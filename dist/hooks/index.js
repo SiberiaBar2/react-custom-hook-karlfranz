@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./useBoolean"), exports);
 __exportStar(require("./useFuncDebounce"), exports);
 __exportStar(require("./useStateSync"), exports);
-__exportStar(require("./useStorgeState"), exports);
+__exportStar(require("./useSessonState"), exports);
 __exportStar(require("./useSyncCallback"), exports);
 __exportStar(require("./useMount"), exports);
 __exportStar(require("./useInterVal"), exports);
@@ -25,6 +25,6 @@ __exportStar(require("./useKeyUpdate"), exports);
 __exportStar(require("./useThrottle"), exports);
 __exportStar(require("./useMountRef"), exports);
 __exportStar(require("./useDocumentTitle"), exports);
-__exportStar(require("./useRequest"), exports);
+__exportStar(require("./useQuery"), exports);
 __exportStar(require("./useLocalState"), exports);
 //# sourceMappingURL=index.js.map

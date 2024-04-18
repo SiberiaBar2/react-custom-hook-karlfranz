@@ -15,3 +15,9 @@ export const cleanObject = (obj?: { [key: string]: unknown }) => {
 
   return result;
 };
+
+export const generateUniqueString = () => {
+  const timestamp = new Date().getTime();
+  const randomString = Math.random().toString(36).substring(2);
+  return timestamp + randomString;
+};

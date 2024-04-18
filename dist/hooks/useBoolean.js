@@ -34,7 +34,7 @@ var useBoolean = function (initValue) {
             return !state;
         });
     };
-    return [value, { toggle: toggle, on: on, off: off }];
+    return { value: value, toggle: toggle, on: on, off: off };
 };
 exports.useBoolean = useBoolean;
 //# sourceMappingURL=useBoolean.js.map

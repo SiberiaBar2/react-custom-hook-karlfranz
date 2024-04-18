@@ -20,9 +20,12 @@
     "react": ">=16.8.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.22",
     "@types/lodash": "^4.14.202",
+    "@types/node": "^20.11.22",
     "@types/react": "^18.2.60",
     "lodash": "^4.17.21"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10"
   }
 }

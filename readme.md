@@ -16,7 +16,7 @@ useInterVal
 
 useList
 
-useRequest
+useQuery
 
 useThrottle
 

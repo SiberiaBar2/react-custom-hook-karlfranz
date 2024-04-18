@@ -1,7 +1,7 @@
 export * from "./useBoolean";
 export * from "./useFuncDebounce";
 export * from "./useStateSync";
-export * from "./useStorgeState";
+export * from "./useSessonState";
 export * from "./useSyncCallback";
 export * from "./useMount";
 export * from "./useInterVal";
@@ -9,5 +9,5 @@ export * from "./useKeyUpdate";
 export * from "./useThrottle";
 export * from "./useMountRef";
 export * from "./useDocumentTitle";
-export * from "./useRequest";
+export * from "./useQuery";
 export * from "./useLocalState";

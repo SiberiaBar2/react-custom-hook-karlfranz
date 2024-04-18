@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import _ from "lodash";
 
-import { useBoolean, useFuncDebounce, useInterVal, useThrottle } from ".";
+import { useBoolean, useFuncDebounce, useInterVal, useKeyUpdate, useThrottle } from ".";
 import { cleanObject } from "../utils";
 
 const RESPONSRCODE = 200;
@@ -68,7 +68,7 @@ type P = [
  *
  */
 /**
- * Data request hook, similar to ahooks useRequest
+ * Data request hook
  *
  * loop?: polling interval;
  *
@@ -130,7 +130,7 @@ export const useQuery = <T extends object>(
   /**
    * refreshDeps
    */
-  useEffect(() => {
+  useKeyUpdate(() => {
     if (!_.isEmpty(refreshDeps)) {
       debouncedCallback(getSyncDataWrap, 1000)(requestConfig.current);
     }
