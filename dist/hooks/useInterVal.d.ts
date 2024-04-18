@@ -13,5 +13,5 @@ type F = () => void;
  *
  * param delaty can be a variable
  */
-export declare const useInterVal: (callback: F, delaty: number | null) => void;
+export declare const useInterVal: (callback: F, delaty?: number | null) => void;
 export {};

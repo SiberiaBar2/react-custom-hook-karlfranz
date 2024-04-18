@@ -186,7 +186,7 @@ export const useQuery = <T extends object>(
 
           syncFunc(params)
             .then((res) => {
-              if (_.get(res, codePath) === responseCode) {
+              if (_.get(res, codePath) == responseCode) {
                 saveData(res);
                 end?.success && end.success(res);
                 cacheKey && localStorage.setItem(cacheKey, JSON.stringify(res));

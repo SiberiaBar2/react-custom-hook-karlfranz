@@ -18,7 +18,7 @@
  */
 export declare const useBoolean: (initValue?: boolean) => {
     readonly value: boolean;
-    readonly toggle: () => void;
     readonly on: () => void;
     readonly off: () => void;
+    readonly toggle: () => void;
 };

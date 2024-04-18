@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { useRef, useState } from "react";
 import { useInterVal } from "./useInterVal";
 
+// 时间补位方法
 const supplement = (n: number) => {
   return n > 9 ? n : "0" + n;
 };
