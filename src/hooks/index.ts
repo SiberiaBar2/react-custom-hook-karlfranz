@@ -12,3 +12,5 @@ export * from "./useDocumentTitle";
 export * from "./useQuery";
 export * from "./useLocalState";
 export * from "./useCountDown";
+export * from "./useQueryParam";
+export * from "./useDebounce";

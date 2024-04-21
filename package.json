@@ -17,7 +17,8 @@
   "author": "karlfranz",
   "license": "ISC",
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": ">=16.8.0",
+    "react-router-dom": ">=6.0.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.202",
@@ -26,6 +27,7 @@
     "lodash": "^4.17.21"
   },
   "dependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "dayjs": "^1.11.10"
   }
 }

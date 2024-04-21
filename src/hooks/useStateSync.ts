@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { NUMS } from "./types";
+import { NUMS } from "../types";
 
 type SyncFunc<K> = (value: K) => void | undefined;
 type DispatchFunc<K> = (

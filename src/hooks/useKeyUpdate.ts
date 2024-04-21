@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { NUMS } from "./types";
+import { NUMS } from "../types";
 
 /**
  * 
