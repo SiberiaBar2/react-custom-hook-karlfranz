@@ -30,8 +30,9 @@ export function useLocalState<T>(value: T | (() => T), storgeKey?: string) {
     (state: T | ((prev?: T) => T)) => {
       if (state instanceof Function) {
         setState((prev) => {
-          localStorage.setItem(sessonKey.current, toStringify(state(prev)));
-          return state(prev);
+          const newState = state(prev);
+          localStorage.setItem(sessonKey.current, toStringify(newState));
+          return newState;
         });
       } else {
         setState(state);

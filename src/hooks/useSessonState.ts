@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { generateUniqueString } from "../utils";
 
 /**
@@ -39,8 +39,9 @@ export function useSessonState<T>(value: T | (() => T), storgeKey?: string) {
     (state: T | ((prev?: T) => T)) => {
       if (state instanceof Function) {
         setState((prev) => {
-          sessionStorage.setItem(sessonKey.current, toStringify(state(prev)));
-          return state(prev);
+          const newState = state(prev);
+          sessionStorage.setItem(sessonKey.current, toStringify(newState));
+          return newState;
         });
       } else {
         setState(state);
@@ -49,6 +50,12 @@ export function useSessonState<T>(value: T | (() => T), storgeKey?: string) {
     },
     [sessonKey.current]
   );
+
+  useEffect(() => {
+    return () => {
+      sessionStorage.removeItem(sessonKey.current);
+    };
+  }, [sessonKey.current]);
 
   return [state, changeState] as const;
 }
