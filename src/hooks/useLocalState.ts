@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { generateUniqueString } from "../utils";
 
 /**
@@ -13,9 +13,13 @@ import { generateUniqueString } from "../utils";
 export function useLocalState<T>(value: T | (() => T), storgeKey?: string) {
   const key = storgeKey || generateUniqueString();
 
+  const sessonKey = useRef("");
+  if (!sessonKey.current) {
+    sessonKey.current = key;
+  }
   const toStringify = (val: T) => JSON.stringify(val);
   const toParse = (val: string | null) => val && JSON.parse(val);
-  const stroge = localStorage.getItem(key) || "";
+  const stroge = localStorage.getItem(sessonKey.current) || "";
 
   const [state, setState] = useState<T>(() => {
     if (value instanceof Function && !toParse(stroge || "")) return value();
@@ -26,15 +30,15 @@ export function useLocalState<T>(value: T | (() => T), storgeKey?: string) {
     (state: T | ((prev?: T) => T)) => {
       if (state instanceof Function) {
         setState((prev) => {
-          localStorage.setItem(key, toStringify(state(prev)));
+          localStorage.setItem(sessonKey.current, toStringify(state(prev)));
           return state(prev);
         });
       } else {
         setState(state);
-        localStorage.setItem(key, toStringify(state));
+        localStorage.setItem(sessonKey.current, toStringify(state));
       }
     },
-    [key]
+    [sessonKey.current]
   );
 
   return [state, changeState] as const;

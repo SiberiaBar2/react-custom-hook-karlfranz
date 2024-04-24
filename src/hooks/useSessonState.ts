@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { generateUniqueString } from "../utils";
 
 /**
@@ -21,10 +21,14 @@ import { generateUniqueString } from "../utils";
  */
 export function useSessonState<T>(value: T | (() => T), storgeKey?: string) {
   const key = storgeKey || generateUniqueString();
+  const sessonKey = useRef("");
+  if (!sessonKey.current) {
+    sessonKey.current = key;
+  }
 
   const toStringify = (val: T) => JSON.stringify(val);
   const toParse = (val: string | null) => val && JSON.parse(val);
-  const stroge = sessionStorage.getItem(key) || "";
+  const stroge = sessionStorage.getItem(sessonKey.current) || "";
 
   const [state, setState] = useState<T>(() => {
     if (value instanceof Function && !toParse(stroge || "")) return value();
@@ -35,15 +39,15 @@ export function useSessonState<T>(value: T | (() => T), storgeKey?: string) {
     (state: T | ((prev?: T) => T)) => {
       if (state instanceof Function) {
         setState((prev) => {
-          sessionStorage.setItem(key, toStringify(state(prev)));
+          sessionStorage.setItem(sessonKey.current, toStringify(state(prev)));
           return state(prev);
         });
       } else {
         setState(state);
-        sessionStorage.setItem(key, toStringify(state));
+        sessionStorage.setItem(sessonKey.current, toStringify(state));
       }
     },
-    [key]
+    [sessonKey.current]
   );
 
   return [state, changeState] as const;
