@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { generateUniqueString } from "../utils";
 
 /**
@@ -51,10 +51,8 @@ export function useSessonState<T>(value: T | (() => T), storgeKey?: string) {
     [sessonKey.current]
   );
 
-  useEffect(() => {
-    return () => {
-      if (!storgeKey) sessionStorage.removeItem(sessonKey.current);
-    };
-  }, [sessonKey.current, storgeKey]);
+  window.onunload = function () {
+    if (!storgeKey) sessionStorage.removeItem(sessonKey.current);
+  };
   return [state, changeState] as const;
 }

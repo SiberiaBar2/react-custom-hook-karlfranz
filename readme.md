@@ -10,11 +10,7 @@ useCountDown
 
 useFuncDebounce
 
-useInfo
-
 useInterVal
-
-useList
 
 useQuery
 
