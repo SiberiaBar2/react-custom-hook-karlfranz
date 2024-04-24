@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { generateUniqueString } from "../utils";
 
 /**
@@ -42,5 +42,10 @@ export function useLocalState<T>(value: T | (() => T), storgeKey?: string) {
     [sessonKey.current]
   );
 
+  useEffect(() => {
+    return () => {
+      if (!storgeKey) localStorage.removeItem(sessonKey.current);
+    };
+  }, [sessonKey.current, storgeKey]);
   return [state, changeState] as const;
 }

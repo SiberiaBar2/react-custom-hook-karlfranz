@@ -53,9 +53,8 @@ export function useSessonState<T>(value: T | (() => T), storgeKey?: string) {
 
   useEffect(() => {
     return () => {
-      sessionStorage.removeItem(sessonKey.current);
+      if (!storgeKey) sessionStorage.removeItem(sessonKey.current);
     };
-  }, [sessonKey.current]);
-
+  }, [sessonKey.current, storgeKey]);
   return [state, changeState] as const;
 }

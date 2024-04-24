@@ -73,8 +73,9 @@ export const useStateSync = <T>(initValue: T) => {
       callFRef.current = callF;
       if (newData instanceof Function) {
         setState((prev) => {
-          prevValue.current = prev;
-          return newData(prev);
+          const newResult = newData(prev);
+          prevValue.current = newResult;
+          return newResult;
         });
         return Promise.resolve(prevValue.current);
       }
