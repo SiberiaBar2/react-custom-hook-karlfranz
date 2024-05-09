@@ -1,8 +1,8 @@
 const isVoid = (value: unknown) =>
   value === undefined || value === null || value === "";
-export const cleanObject = (obj?: { [key: string]: unknown }) => {
+export const cleanObject = <T extends { [key: string]: unknown }>(obj?: T) => {
   if (!obj) {
-    return {};
+    return {} as T;
   }
 
   const result = { ...obj };
