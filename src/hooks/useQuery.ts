@@ -37,15 +37,8 @@ interface EndConfig {
 }
 
 type P<K> = [
-  syncFunc: (
-    config?:
-      | K
-      | {
-          [key: string]: unknown;
-        }
-  ) => Promise<unknown>,
-  options?: OptionsConfig,
-  end?: EndConfig
+  syncFunc: (config: K) => Promise<unknown>,
+  options?: OptionsConfig & EndConfig
 ];
 
 /**
@@ -111,8 +104,8 @@ type P<K> = [
  * enableConsoleAuxiliary?: boolean; Is auxiliary printing enabled
  *
  */
-export const useQuery = <T extends object, K extends unknown>(
-  ...[syncFunc, options, end]: P<K>
+export const useQuery = <T = any, K = unknown>(
+  ...[syncFunc, options]: P<K>
 ) => {
   const {
     loop = null,
@@ -134,7 +127,6 @@ export const useQuery = <T extends object, K extends unknown>(
   const debouncedCallback = useFuncDebounce();
   const { value: loading, on: loadingOn, off: loadingOff } = useBoolean(true);
 
-  //   const data = useRef<T>({} as T);
   const [data, setData] = useState<T>({} as T);
   const retryNumRef = useRef<number>(0);
   const requestConfig = useRef<K>();
@@ -169,9 +161,7 @@ export const useQuery = <T extends object, K extends unknown>(
 
   const getParams = (config?: K) => {
     if (Object.prototype.toString.call(config) === "[object Object]") {
-      return !_.isEmpty(cleanObject(config as { [key: string]: unknown }))
-        ? cleanObject(config as { [key: string]: unknown })
-        : undefined;
+      return !_.isEmpty(cleanObject(config)) ? cleanObject(config) : undefined;
     }
     return config;
   };
@@ -188,7 +178,7 @@ export const useQuery = <T extends object, K extends unknown>(
           );
           if (!_.isEmpty(locationCacheData)) {
             saveData(locationCacheData);
-            end?.success && end.success(locationCacheData);
+            options?.success && options.success(locationCacheData);
             loadingOff();
           }
         } else {
@@ -197,22 +187,21 @@ export const useQuery = <T extends object, K extends unknown>(
             requestConfig.current = config;
           }
 
-          syncFunc(params)
+          syncFunc(params || ({} as K))
             .then((res) => {
               if (_.get(res, codePath) == responseCode) {
                 saveData(res);
-                end?.success && end.success(res);
+                options?.success && options?.success(res);
                 cacheKey && localStorage.setItem(cacheKey, JSON.stringify(res));
                 loadingOff();
               } else {
                 console.error(FAILEDMESSAGE);
                 loadingOff();
-                // Promise.reject(new Error(FAILEDMESSAGE));
               }
             })
             .catch((error) => {
               loadingOff();
-              end?.error && end.error(error);
+              options?.error && options.error(error);
               console.log("useQuery error catch!", error);
 
               if (retryNum) {

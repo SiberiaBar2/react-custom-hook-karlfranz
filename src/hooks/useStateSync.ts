@@ -1,12 +1,12 @@
 import { useRef, useState, useEffect } from "react";
 import { NUMS } from "../types";
 
-type SyncFunc<K> = (value: K) => void | undefined;
-type DispatchFunc<K> = (
+export type SyncFunc<K> = (value: K) => void | undefined;
+export type DispatchFunc<K> = (
   newData: K | ((prev: K) => K),
   callF?: SyncFunc<K>
 ) => Promise<K>;
-type ReturnArray<K> = [K, DispatchFunc<K>];
+export type ReturnArray<K> = [K, DispatchFunc<K>];
 
 /**
  * 可以获得React状态更新后最新的值

@@ -1,15 +1,16 @@
 const isVoid = (value: unknown) =>
   value === undefined || value === null || value === "";
-export const cleanObject = <T extends { [key: string]: unknown }>(obj?: T) => {
+type Key<T> = keyof T;
+export const cleanObject = <T extends any>(obj?: T) => {
   if (!obj) {
     return {} as T;
   }
 
-  const result = { ...obj };
+  const result = { ...obj } as T;
 
-  Object.keys(result).forEach((key) => {
-    if (isVoid(result[key])) {
-      delete result[key];
+  Object.keys(result as Key<T>).forEach((key) => {
+    if (isVoid(result[key as Key<T>])) {
+      delete result[key as Key<T>];
     }
   });
 
