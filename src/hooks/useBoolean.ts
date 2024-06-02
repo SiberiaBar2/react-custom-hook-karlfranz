@@ -17,8 +17,8 @@ import { useState } from "react";
  *
  * @toggle function to invert the state
  */
-export const useBoolean = (initValue: boolean = false) => {
-  const [value, setValue] = useState(initValue);
+export const useBoolean = () => {
+  const [value, setValue] = useState(false);
 
   const on = () => {
     setValue(true);

@@ -125,7 +125,7 @@ export const useQuery = <T = any, K = unknown>(
   } = options || {};
   const throttleCallback = useThrottle();
   const debouncedCallback = useFuncDebounce();
-  const { value: loading, on: loadingOn, off: loadingOff } = useBoolean(true);
+  const { value: loading, on: loadingOn, off: loadingOff } = useBoolean();
 
   const [data, setData] = useState<T>({} as T);
   const retryNumRef = useRef<number>(0);
